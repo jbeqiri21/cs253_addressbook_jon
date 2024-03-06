@@ -108,7 +108,7 @@ def add_entry():
 @app.route('/delete', methods=['POST'])
 def delete_entry():
     db = get_db()
-    db.execute('delete from entries where (name, email, address, phone_number) values (?, ?, ?, ?)',
+    db.execute('delete from entries where name = ? and email = ? and address = ? and phone_number = ?',
                [request.form['name'], request.form['email'],request.form['address'],request.form['phone']])
     db.commit()
     flash('Entry was successfully deleted')
